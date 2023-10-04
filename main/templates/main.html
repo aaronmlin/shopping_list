@@ -111,15 +111,24 @@
             <th>Price</th>
             <th>Description</th>
             <th>Date Added</th>
-        </tr>`
-        products.forEach((item) => {
-            htmlString += `\n<tr>
-            <td>${item.fields.name}</td>
-            <td>${item.fields.price}</td>
-            <td>${item.fields.description}</td>
-            <td>${item.fields.date_added}</td>
-        </tr>` 
-        })
+            <th>Edit</th>
+            <th>Delete</th>
+            </tr>`
+            products.forEach((item) => {
+                htmlString += `
+                <tr>
+                    <td>${item.fields.name}</td>
+                    <td>${item.fields.price}</td>
+                    <td>${item.fields.description}</td>
+                    <td>${item.fields.date_added}</td>
+                    <td>
+                        <button class="btn btn-primary" onclick="editProduct(${item.pk})">Edit</button>
+                    </td>
+                    <td>
+                        <button class="btn btn-danger" onclick="deleteProduct(${item.pk})">Delete</button>
+                    </td>
+                </tr>`
+            });
         
         document.getElementById("product_table").innerHTML = htmlString
     }
@@ -134,5 +143,6 @@
         return false
     }
     document.getElementById("button_add").onclick = addProduct
+
 </script>
 {% endblock content %}

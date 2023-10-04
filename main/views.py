@@ -18,12 +18,15 @@ from django.views.decorators.csrf import csrf_exempt
 @login_required(login_url='/login')
 def show_main(request):
     products = Product.objects.all()
-
+    if 'last_login' in request.COOKIES:
+        last_login = request.COOKIES['last_login']
+    else:
+        last_login = 'N/A'
     context = {
         'name': request.user.username, # Nama kamu
         'class': 'PBP F', # Kelas PBP kamu
         'products': products,
-        'last_login': request.COOKIES['last_login'],
+        'last_login': last_login
 
     }
 
